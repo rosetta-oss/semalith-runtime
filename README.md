@@ -14,6 +14,8 @@ This repository holds the runtime as Docker images, a one-command demo on a samp
 
 ## Benchmark
 
+![Benchmark summary: cost, time, accuracy and overall score for plain REST, graph, and graph plus knowledge](docs/images/benchmark.png)
+
 An AI agent answered 44 business questions about the demo ERP, three times each, through three paths: a plain REST API, the Semalith graph, and the graph with its knowledge base.
 
 | Path | Cost | Time per answer | Accuracy | Rule-based questions | Overall |

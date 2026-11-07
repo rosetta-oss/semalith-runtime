@@ -1,4 +1,4 @@
-# Semalith Runtime
+# Semalith
 
 **The semantic layer between your data and AI agents.**
 

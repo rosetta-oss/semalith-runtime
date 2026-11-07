@@ -70,4 +70,4 @@ The cost and speed gains repeated in every round. The results depend on the REST
 
 ## Licence
 
-See [LICENSE](LICENSE). Third-party notices are in [NOTICE](NOTICE) and [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). AdventureWorks is MIT-licensed Microsoft sample data, downloaded at install time.
+Free for demonstration, evaluation (including by an individual inside their organisation) and personal research. Commercial use, production use, offering it as a service, redistribution and reverse engineering need written permission. This is not open-source software; see [LICENSE](LICENSE). Third-party notices are in [NOTICE](NOTICE) and [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). AdventureWorks is MIT-licensed Microsoft sample data, downloaded at install time.

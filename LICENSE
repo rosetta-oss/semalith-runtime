@@ -1,16 +1,34 @@
+Semalith Runtime Licence
+
 Copyright 2026 Semalith contributors. All rights reserved.
 
-This software, its source code and its documentation are proprietary. No
-license or other right is granted to anyone, whether expressly, by implication
-or otherwise. Without prior written permission you may not use, copy, modify,
-merge, publish, distribute, sublicense or sell any part of them.
+1. Permitted use. You may download and run the Semalith Runtime images and
+   files in this repository free of charge, only for:
+   a. demonstration;
+   b. evaluation, including evaluation by an individual inside their
+      organisation; and
+   c. personal research.
 
-Being able to see or download a copy does not give you permission to do any of
-these things.
+2. Not permitted without prior written permission:
+   a. commercial use;
+   b. production use, including use on live business data to run operations;
+   c. offering the software, or any part of it, as a service to others;
+   d. redistributing, publishing or selling the images or any part of them;
+   e. decompiling, disassembling or otherwise reverse engineering the software,
+      except where applicable law permits this despite this restriction.
 
-Third-party components keep their own licenses; see NOTICE and
-THIRD-PARTY-NOTICES.md.
+3. Reserved rights. All rights not expressly granted here are reserved. This
+   licence grants no right to the source code, trademarks or names.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+4. Ending the licence. This licence ends automatically if you break its terms.
+   You must then stop using the software and delete your copies.
+
+5. Third parties. Third-party components keep their own licences; see NOTICE
+   and THIRD-PARTY-NOTICES.md.
+
+6. No warranty. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+   CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+For any other use, open an issue in this repository to ask for written
+permission.

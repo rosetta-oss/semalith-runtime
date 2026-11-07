@@ -4,7 +4,21 @@
 
 Semalith gives AI agents your business meaning, not just your tables. You describe the business once as a lean ontology (entities, relationships, metrics, rules and actions) with a knowledge base beside it, and agents query it over MCP. Answers come with their definitions and limits stated.
 
+Against a plain REST API on the same ERP, the same AI agent was **2.6 times cheaper, 37% faster and more accurate**, with the largest gain on questions that need business rules.
+
 This repository holds the runtime as Docker images, a one-command demo on a sample ERP, and our benchmark. It contains no source code.
+
+## Benchmark
+
+An AI agent answered 44 business questions about the demo ERP, three times each, through three paths: a plain REST API, the Semalith graph, and the graph with its knowledge base.
+
+| Path | Cost | Time per answer | Accuracy | Rule-based questions | Overall |
+|---|---:|---:|---:|---:|---:|
+| Plain REST | $35.23 | 29.8 s | 0.874 | 0.818 | 83.0 |
+| Graph | $13.07 | 19.1 s | 0.916 | 0.833 | 91.9 |
+| Graph + knowledge | $13.34 | 18.9 s | 0.956 | 0.919 | 92.9 |
+
+The cost and speed gains repeated in every round. The results depend on the REST design, the data and the model, and the scores were set by AI. Read [the report](benchmark/REPORT.md) for the method, the limits and the questions.
 
 ## Why Semalith
 
@@ -128,18 +142,6 @@ To remove everything:
 ```bash
 docker compose down -v
 ```
-
-## Benchmark
-
-An AI agent answered 44 business questions about the demo ERP, three times each, through three paths: a plain REST API, the Semalith graph, and the graph with its knowledge base.
-
-| Path | Cost | Time per answer | Accuracy | Rule-based questions | Overall |
-|---|---:|---:|---:|---:|---:|
-| Plain REST | $35.23 | 29.8 s | 0.874 | 0.818 | 83.0 |
-| Graph | $13.07 | 19.1 s | 0.916 | 0.833 | 91.9 |
-| Graph + knowledge | $13.34 | 18.9 s | 0.956 | 0.919 | 92.9 |
-
-The cost and speed gains repeated in every round. The results depend on the REST design, the data and the model, and the scores were set by AI. Read [the report](benchmark/REPORT.md) for the method, the limits and the questions.
 
 ## Limits
 

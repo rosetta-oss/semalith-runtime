@@ -15,6 +15,26 @@ This repository holds the runtime as Docker images, a one-command demo on a samp
 - **Released like software.** Every release is validated, sealed and reversible.
 - **Standard tools.** Agents use 12 fixed MCP tools. New business needs change the graph, not the tools.
 
+## What it looks like
+
+These screens come from the ERP demo graph.
+
+**Explorer.** The whole model as a graph: 41 entities, 450 attributes and 59 resolvers, with each entity's definition and identity.
+
+![The Explorer tab showing the ERP demo graph](docs/images/explorer.webp)
+
+**Knowledge.** Reviewed articles that explain what the data can't, linked to the entities they apply to.
+
+![A knowledge article about counting stores](docs/images/knowledge.webp)
+
+**Publish.** Quality checks, sealed versions you can roll back to, the MCP address and access tokens.
+
+![The Publish tab with versions and access tokens](docs/images/publish.webp)
+
+**Usage.** Requests, failure rate and latency, and where agents get stuck, so you know what to improve next.
+
+![The Usage tab with request metrics](docs/images/usage.webp)
+
 ## Quick start
 
 You need Docker with Compose v2, about 3 GB of memory, and internet access for the first start.

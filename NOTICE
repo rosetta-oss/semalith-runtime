@@ -1,0 +1,11 @@
+Semalith
+Copyright 2026 Semalith contributors
+
+All rights reserved (see LICENSE).
+
+examples/erp-demo uses two works that it downloads at install time and does not
+redistribute:
+- the AdventureWorks sample database, Copyright (c) Microsoft Corporation, MIT
+  License (https://github.com/microsoft/sql-server-samples);
+- AdventureWorks-for-Postgres, Copyright (c) 2020 Polangeles LTD., MIT License
+  (https://github.com/lorint/AdventureWorks-for-Postgres).

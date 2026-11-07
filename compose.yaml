@@ -1,0 +1,82 @@
+# Semalith Runtime with a sample ERP. `docker compose up -d` is all it takes.
+# The first start downloads AdventureWorks and takes a few minutes. Then:
+#   docker compose logs setup     # sign-in details and how to connect Claude
+name: semalith-runtime
+
+x-demo: &demo
+  image: ${SEMALITH_DEMO_IMAGE:-ghcr.io/rosetta-oss/semalith-demo:0.1.1}
+
+services:
+  # One-shot: generates the secrets, downloads the sample data, prepares the database scripts.
+  init:
+    <<: *demo
+    command: init
+    volumes:
+      - secrets:/secrets
+      - aw-data:/aw
+      - init-sql:/init-sql
+
+  erp-db:
+    image: postgres:16.4
+    restart: unless-stopped
+    depends_on:
+      init: {condition: service_completed_successfully}
+    entrypoint:
+      - bash
+      - -c
+      - export POSTGRES_PASSWORD=$$(cat /secrets/pg_password) AUTHENTICATOR_PASSWORD=$$(cat /secrets/authenticator_password); exec docker-entrypoint.sh postgres
+    environment:
+      POSTGRES_DB: adventureworks
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - secrets:/secrets:ro
+      - aw-data:/data:ro
+      - init-sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d adventureworks"]
+      interval: 5s
+      retries: 120
+
+  erp-api:
+    image: postgrest/postgrest:v12.2.3
+    restart: unless-stopped
+    depends_on:
+      erp-db: {condition: service_healthy}
+    command: ["postgrest", "/secrets/postgrest.conf"]
+    volumes:
+      - secrets:/secrets:ro
+
+  studio:
+    image: ${SEMALITH_IMAGE:-ghcr.io/rosetta-oss/semalith:0.1.1}
+    restart: unless-stopped
+    depends_on:
+      - erp-api
+    environment:
+      SEMALITH_STUDIO_TLS_SAN: "dns:studio"
+    volumes:
+      - studio-data:/data/studio
+    ports:
+      - "127.0.0.1:${STUDIO_PORT:-9631}:9631"
+      - "127.0.0.1:${DATA_PORT:-9632}:9632"
+
+  # One-shot: creates the admin, publishes the graph and writes the connection files.
+  setup:
+    <<: *demo
+    command: setup
+    depends_on:
+      studio: {condition: service_healthy}
+    environment:
+      STUDIO_HOST: studio
+      PUBLIC_DATA_URL: https://localhost:${DATA_PORT:-9632}
+      PUBLIC_BUILDER_URL: https://localhost:${STUDIO_PORT:-9631}
+      OUTPUT_DIR: /out
+    volumes:
+      - secrets:/secrets:ro
+      - ./semalith-connect:/out
+
+volumes:
+  secrets:
+  aw-data:
+  init-sql:
+  pg-data:
+  studio-data:

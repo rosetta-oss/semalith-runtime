@@ -30,19 +30,69 @@ The first start downloads Microsoft's AdventureWorks sample, loads a demo ERP, p
 docker compose logs setup
 ```
 
-This prints the Builder address and your sign-in. The connection files are written to `./semalith-connect`. To connect Claude Code:
+This prints the Builder address and your sign-in. Setup also writes the connection files to `./semalith-connect`:
+
+| File | What it is |
+|---|---|
+| `mcp-config.json` | The data-plane MCP server for the ERP graph, with its graph token |
+| `builder-mcp-config.json` | The Builder MCP server, for creating and changing graphs, with a 30-day workspace token |
+| `studio.pem` | Studio's self-signed certificate, which your client must trust |
+| `golden-cases.md` | Verified questions to try |
+
+The graph token can only query this graph. The workspace token can change graphs, so keep it private. To issue new tokens, run setup again:
+
+```bash
+docker compose run --rm setup
+```
+
+## Connect an AI client
+
+### Claude Code
+
+The script registers both servers and starts Claude Code trusting the certificate:
 
 ```bash
 cd semalith-connect && ./connect-claude.sh
 ```
 
-Then ask, for example:
+To do it by hand:
+
+```bash
+cd semalith-connect
+claude mcp add-json erp-demo "$(cat mcp-config.json)"
+claude mcp add-json erp-builder "$(cat builder-mcp-config.json)"
+NODE_EXTRA_CA_CERTS="$PWD/studio.pem" claude
+```
+
+### Codex
+
+Put the graph token in an environment variable and register the server:
+
+```bash
+cd semalith-connect
+export SEMALITH_GRAPH_TOKEN="$(python3 -c 'import json; print(json.load(open("mcp-config.json"))["headers"]["Authorization"].split()[-1])')"
+codex mcp add erp-demo --url "$(python3 -c 'import json; print(json.load(open("mcp-config.json"))["url"])')" --bearer-token-env-var SEMALITH_GRAPH_TOKEN
+```
+
+The variable must be set in the shell that starts Codex. Codex must also trust `studio.pem`, for example by adding it to your system's trusted certificates. We have not tested Codex with the demo yet.
+
+### Other MCP clients
+
+Use the URL and `Authorization` header in `mcp-config.json`, and make the client trust `studio.pem`.
+
+## Try the ERP demo
+
+Ask your agent, for example:
 
 > What was our total purchasing bill for 2024, and which month was the heaviest?
 
 > Put reseller sales for January to June 2025 next to January to June 2024. Is the channel growing or shrinking?
 
-More questions are in `semalith-connect/golden-cases.md`. The Builder, where you can read the graph and its knowledge, is at <https://localhost:9631>. It uses a self-signed certificate.
+> Which products have we sold since the end of June 2024 that now have no stock and nothing on the way?
+
+More questions with verified answers are in `semalith-connect/golden-cases.md`. To build or change a graph with AI, use the Builder server (`erp-builder`) and ask your agent to read the graph, add an entity or saved query, and publish it.
+
+The Builder, where you can read the graph and its knowledge, is at <https://localhost:9631>. Sign in with the details from `docker compose logs setup`.
 
 To remove everything:
 

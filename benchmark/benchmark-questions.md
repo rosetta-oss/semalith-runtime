@@ -2,7 +2,7 @@
 
 Status: frozen 2026-11-07. All three groups get the same business guidance, without tool-specific instructions. Group A reads sales through the `my_*` functions.
 
-The question set for a three-way benchmark on the ERP demo. This file prepares the run; the run itself has not happened.
+The question set for a three-way benchmark on the ERP demo. The questions and known answers were frozen before the runs. Results are in [REPORT.md](REPORT.md).
 
 | Group | What the agent gets |
 |---|---|

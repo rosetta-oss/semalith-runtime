@@ -1,0 +1,47 @@
+1
+00:00:00,900 --> 00:00:08,405
+This is Semalith: the semantic layer between your data and AI agents. Here is the graph behind an agentic ERP.
+
+2
+00:00:11,205 --> 00:00:22,546
+Underneath it all is the Semalith graph: a map of the ERP, in business language. Thirty-six entities: products, orders, customers, vendors, work orders and more.
+
+3
+00:00:22,896 --> 00:00:32,582
+Forty-nine resolvers say how each one is fetched. Twenty-three saved queries cover the common questions. And four write operations are the only way anything changes.
+
+4
+00:00:32,932 --> 00:00:39,710
+Relationships, metrics, permissions and writes are all declared in this one map, and every agent uses them by name.
+
+5
+00:00:41,910 --> 00:00:55,547
+A good map also makes answers faster. Same common questions, before and after tuning: the overall business went from 55 seconds to 25. Promotions, from 61 to 28, in a single tool call.
+
+6
+00:00:55,897 --> 00:01:06,103
+Three things did it. First, common statistics are computed on the server: a period comparison comes back as about 120 rows, in 1.4 seconds.
+
+7
+00:01:06,453 --> 00:01:19,008
+Second, related records are fetched in batches: 4,012 purchase orders with their lines, in 0.7 seconds. Third, large results are saved as files and analysed on the server.
+
+8
+00:01:21,208 --> 00:01:29,839
+And the map is easy to change. Add something new, like period compare. The platform test-runs it, and you publish graph version 27.
+
+9
+00:01:30,189 --> 00:01:34,801
+The agent uses it on the very next question. If something's wrong, you roll back.
+
+10
+00:01:35,151 --> 00:01:44,182
+When the agent once gave a wrong price, the cause was a field name: two different prices shared one name. Renaming one to period list price fixed the answer.
+
+11
+00:01:44,532 --> 00:01:50,779
+No app code changed, and the agent wasn't rewritten. Fix the map, and everything that uses it gets better.
+
+12
+00:01:52,979 --> 00:01:59,937
+Try it with the ERP demo, in one Docker command, from rosetta-oss slash semalith-runtime on GitHub.

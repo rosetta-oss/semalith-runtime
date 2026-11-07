@@ -2,6 +2,10 @@
 
 **The semantic layer between your data and AI agents.**
 
+[![Watch the 2-minute video: the graph behind an agentic ERP](docs/images/video-poster.jpg)](docs/semalith-erp-graph.mp4)
+
+*Watch the 2-minute video: the graph behind an agentic ERP. [Subtitles](docs/semalith-erp-graph.srt)*
+
 Semalith gives AI agents your business meaning, not just your tables. You describe the business once as a lean ontology (entities, relationships, metrics, rules and actions) with a knowledge base beside it, and agents query it over MCP. Answers come with their definitions and limits stated.
 
 Against a plain REST API on the same ERP, the same AI agent was **2.6 times cheaper, 37% faster and more accurate**, with the largest gain on questions that need business rules.

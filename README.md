@@ -24,13 +24,13 @@ curl -fsSL https://raw.githubusercontent.com/rosetta-oss/semalith-runtime/main/c
 docker compose up -d
 ```
 
-The first start downloads Microsoft's AdventureWorks sample, loads a demo ERP, publishes a ready-made graph and generates an admin password. Then:
+The first start downloads Microsoft's AdventureWorks sample, loads a demo ERP, publishes a ready-made graph and creates the demo sign-in. Then:
 
 ```bash
 docker compose logs setup
 ```
 
-This prints the Builder address and your sign-in. Setup also writes the connection files to `./semalith-connect`:
+This prints the Builder address and the sign-in, **demo@test.com** / **semalith-demo**. Setup also writes the connection files to `./semalith-connect`:
 
 | File | What it is |
 |---|---|
@@ -98,7 +98,7 @@ The Builder is the web interface where you can read the graph, its knowledge and
 
 1. Open <https://localhost:9631> in your browser.
 2. Your browser warns that the certificate is not trusted, because the demo uses a self-signed one. Choose to continue to localhost.
-3. Sign in with the email and password from `docker compose logs setup`.
+3. Sign in as **demo@test.com** with the password **semalith-demo**.
 4. Open the ERP graph: <https://localhost:9631/#/graphs/erp/erp-demo>. Its tabs show the model, saved queries, knowledge and releases. The Publish tab, <https://localhost:9631/#/graphs/erp/erp-demo/publish>, lists the published versions.
 
 If you set `STUDIO_PORT`, use that port instead of 9631.
@@ -124,7 +124,7 @@ The cost and speed gains repeated in every round. The results depend on the REST
 ## Limits
 
 - Early software. Expect breaking changes before 1.0.
-- The demo uses a self-signed certificate. Use your own in any real deployment.
+- The demo uses a self-signed certificate and a fixed sign-in, and listens on this computer only. Do not expose it to a network, and change both before using real data.
 - No support commitment.
 
 ## Licence

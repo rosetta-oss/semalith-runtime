@@ -92,7 +92,16 @@ Ask your agent, for example:
 
 More questions with verified answers are in `semalith-connect/golden-cases.md`. To build or change a graph with AI, use the Builder server (`erp-builder`) and ask your agent to read the graph, add an entity or saved query, and publish it.
 
-The Builder, where you can read the graph and its knowledge, is at <https://localhost:9631>. Sign in with the details from `docker compose logs setup`.
+## Open the Builder
+
+The Builder is the web interface where you can read the graph, its knowledge and its releases.
+
+1. Open <https://localhost:9631> in your browser.
+2. Your browser warns that the certificate is not trusted, because the demo uses a self-signed one. Choose to continue to localhost.
+3. Sign in with the email and password from `docker compose logs setup`.
+4. Open the ERP graph: <https://localhost:9631/#/graphs/erp/erp-demo>. Its tabs show the model, saved queries, knowledge and releases. The Publish tab, <https://localhost:9631/#/graphs/erp/erp-demo/publish>, lists the published versions.
+
+If you set `STUDIO_PORT`, use that port instead of 9631.
 
 To remove everything:
 
